@@ -13,12 +13,21 @@ export default {
       },
     },
     extend: {
-      colors: {
-        border: "hsl(var(--border))",
-        input: "hsl(var(--input))",
-        ring: "hsl(var(--ring))",
-        background: "hsl(var(--background))",
-        foreground: "hsl(var(--foreground))",
+        colors: {
+          border: "hsl(var(--border))",
+          input: "hsl(var(--input))",
+          ring: "hsl(var(--ring))",
+          background: "hsl(var(--background))",
+          foreground: "hsl(var(--foreground))",
+          sky: {
+            top: "hsl(var(--sky-top))",
+            mid: "hsl(var(--sky-mid))",
+            bottom: "hsl(var(--sky-bottom))",
+          },
+          glass: {
+            DEFAULT: "hsla(var(--glass-bg) / 0.55)",
+            border: "hsla(var(--glass-border) / 0.4)",
+          },
         primary: {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",

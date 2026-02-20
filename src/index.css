@@ -2,95 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Design System — Sky & Atmosphere Theme */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-
-    --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
+    --background: 213 100% 10%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 220 30% 15%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 220 30% 15%;
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 199 89% 58%;
+    --primary-foreground: 213 100% 8%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 220 40% 20%;
     --secondary-foreground: 210 40% 98%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 220 30% 22%;
+    --muted-foreground: 215 25% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
+    --accent: 199 89% 48%;
     --accent-foreground: 210 40% 98%;
 
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --border: 220 30% 25%;
+    --input: 220 30% 22%;
+    --ring: 199 89% 58%;
+
+    --radius: 1rem;
+
+    /* Custom weather tokens */
+    --sky-top: 213 100% 10%;
+    --sky-mid: 213 80% 16%;
+    --sky-bottom: 220 60% 22%;
+    --glass-bg: 220 40% 20%;
+    --glass-border: 210 40% 35%;
+    --glow-primary: 199 89% 58%;
+
+    --sidebar-background: 220 30% 12%;
+    --sidebar-foreground: 210 40% 90%;
+    --sidebar-primary: 199 89% 58%;
+    --sidebar-primary-foreground: 213 100% 8%;
+    --sidebar-accent: 220 30% 22%;
+    --sidebar-accent-foreground: 210 40% 90%;
+    --sidebar-border: 220 30% 20%;
+    --sidebar-ring: 199 89% 58%;
   }
 }
 
@@ -101,5 +62,54 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+    background: linear-gradient(
+      160deg,
+      hsl(var(--sky-top)) 0%,
+      hsl(var(--sky-mid)) 50%,
+      hsl(var(--sky-bottom)) 100%
+    );
+    min-height: 100vh;
+  }
+}
+
+@layer utilities {
+  .glass-card {
+    background: hsla(var(--glass-bg) / 0.55);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid hsla(var(--glass-border) / 0.4);
+    box-shadow:
+      0 8px 32px hsla(213 100% 5% / 0.4),
+      inset 0 1px 0 hsla(210 40% 98% / 0.08);
+  }
+
+  .sky-gradient {
+    background: linear-gradient(
+      160deg,
+      hsl(var(--sky-top)) 0%,
+      hsl(var(--sky-mid)) 50%,
+      hsl(var(--sky-bottom)) 100%
+    );
+  }
+
+  .glow-text {
+    text-shadow: 0 0 30px hsla(var(--glow-primary) / 0.5);
+  }
+
+  .input-glass {
+    background: hsla(var(--glass-bg) / 0.5);
+    border: 1px solid hsla(var(--glass-border) / 0.5);
+    color: hsl(var(--foreground));
+  }
+
+  .input-glass::placeholder {
+    color: hsl(var(--muted-foreground));
+  }
+
+  .input-glass:focus {
+    outline: none;
+    border-color: hsl(var(--primary));
+    box-shadow: 0 0 0 3px hsla(var(--primary) / 0.15);
   }
 }
