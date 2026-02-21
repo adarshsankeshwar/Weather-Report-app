@@ -1,31 +1,35 @@
-import { useState } from "react";
-import { CloudSun, AlertCircle, Key } from "lucide-react";
+import { useState, useEffect } from "react";
+import { CloudSun, AlertCircle, Clock, Calendar } from "lucide-react";
 import SearchBar from "@/components/SearchBar";
 import WeatherCard, { WeatherData } from "@/components/WeatherCard";
+
+const API_KEY = "d1845658f92b31c64bd94f06f7188c9c";
 
 const Index = () => {
   const [weather, setWeather] = useState<WeatherData | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [apiKey, setApiKey] = useState(
-    import.meta.env.VITE_WEATHER_API_KEY || ""
-  );
-  const [showKeyInput, setShowKeyInput] = useState(
-    !import.meta.env.VITE_WEATHER_API_KEY
-  );
+  const [currentTime, setCurrentTime] = useState(new Date());
+
+  useEffect(() => {
+    const timer = setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const formatTime = (date: Date) =>
+    date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  const formatDate = (date: Date) =>
+    date.toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
+  const formatDay = (date: Date) =>
+    date.toLocaleDateString("en-US", { weekday: "long" });
 
   const fetchWeather = async (city: string) => {
-    if (!apiKey.trim()) {
-      setError("Please enter your OpenWeatherMap API key first.");
-      return;
-    }
-
     setIsLoading(true);
     setError(null);
     setWeather(null);
 
     try {
-      const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${apiKey}&units=metric`;
+      const url = `https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)}&appid=${API_KEY}&units=metric`;
       const res = await fetch(url);
 
       if (res.status === 404) {
@@ -81,43 +85,20 @@ const Index = () => {
       </div>
 
       {/* API Key Input (shown if no env key) */}
-      {showKeyInput && (
-        <div className="glass-card rounded-2xl p-5 w-full max-w-md mx-auto mb-6 relative z-10">
-          <div className="flex items-center gap-2 mb-3">
-            <Key size={16} className="text-primary" />
-            <span className="text-sm font-semibold text-foreground">
-              OpenWeatherMap API Key
-            </span>
+      {/* Date & Time */}
+      <div className="glass-card rounded-2xl p-5 w-full max-w-md mx-auto mb-6 relative z-10">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <Calendar size={16} className="text-primary" />
+            <span className="text-sm font-semibold text-foreground">{formatDay(currentTime)}</span>
+            <span className="text-sm text-muted-foreground">{formatDate(currentTime)}</span>
           </div>
-          <div className="flex gap-2">
-            <input
-              type="text"
-              value={apiKey}
-              onChange={(e) => setApiKey(e.target.value)}
-              placeholder="Paste your API key here..."
-              className="input-glass flex-1 rounded-xl px-4 py-2.5 text-sm"
-            />
-            <button
-              onClick={() => setShowKeyInput(false)}
-              disabled={!apiKey.trim()}
-              className="rounded-xl bg-primary px-4 py-2.5 text-primary-foreground text-sm font-medium disabled:opacity-50"
-            >
-              Save
-            </button>
+          <div className="flex items-center gap-2">
+            <Clock size={16} className="text-primary" />
+            <span className="text-sm font-mono font-semibold text-foreground">{formatTime(currentTime)}</span>
           </div>
-          <p className="mt-2 text-xs text-muted-foreground">
-            Get a free key at{" "}
-            <a
-              href="https://openweathermap.org/api"
-              target="_blank"
-              rel="noreferrer"
-              className="text-primary underline underline-offset-2"
-            >
-              openweathermap.org
-            </a>
-          </p>
         </div>
-      )}
+      </div>
 
       {/* Search bar */}
       <div className="w-full relative z-10 mb-8">
