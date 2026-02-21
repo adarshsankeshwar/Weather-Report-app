@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { CloudSun, AlertCircle, Clock, Calendar } from "lucide-react";
 import SearchBar from "@/components/SearchBar";
 import WeatherCard, { WeatherData } from "@/components/WeatherCard";
+import WeatherHistory from "@/components/WeatherHistory";
 
 const API_KEY = "d1845658f92b31c64bd94f06f7188c9c";
 
@@ -128,6 +129,11 @@ const Index = () => {
       {weather && !isLoading && (
         <div className="w-full">
           <WeatherCard data={weather} />
+          <WeatherHistory
+            lat={weather.coord.lat}
+            lon={weather.coord.lon}
+            cityName={weather.name}
+          />
         </div>
       )}
 

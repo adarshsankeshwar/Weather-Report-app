@@ -3,6 +3,7 @@ import { Droplets, Wind, Thermometer, MapPin } from "lucide-react";
 export interface WeatherData {
   name: string;
   sys: { country: string };
+  coord: { lat: number; lon: number };
   main: {
     temp: number;
     feels_like: number;
