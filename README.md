@@ -1,73 +1,66 @@
-# Welcome to your Lovable project
+# 🌤 Weather Report Application
 
-## Project info
+## 📌 Overview
+The Weather Report Application is a Java-based application that fetches real-time weather data for any city using a public Weather API.  
+It demonstrates API integration, JSON parsing, exception handling, and clean object-oriented design in Java.
 
-**URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID
+This project was built to strengthen backend development skills and understand how external APIs are integrated into Java applications.
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## ✨ Key Features
 
-**Use Lovable**
+- 🌍 Search weather by city name
+- 🌡 Real-time temperature display (Celsius/Fahrenheit)
+- 💧 Humidity information
+- 🌬 Wind speed details
+- ☁ Weather condition description
+- 📅 Displays date and time of report
+- ❗ Graceful handling of invalid city names
+- 🔄 Proper error handling for network failures
+- 🔐 Secure API key usage
+- 🧪 Modular and maintainable code structure
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and start prompting.
+---
 
-Changes made via Lovable will be committed automatically to this repo.
+## 🛠 Technologies Used
 
-**Use your preferred IDE**
+- Java (Core Java)
+- Object-Oriented Programming (OOP)
+- REST API Integration
+- HttpURLConnection
+- JSON Parsing (org.json / Gson / Jackson)
+- Exception Handling
+- Git & GitHub
+- Maven (if applicable)
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+---
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🏗 Architecture / Design
 
-Follow these steps:
+The application follows a modular design:
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+- `Main.java` → Handles user interaction
+- `WeatherService.java` → Handles API calls
+- `WeatherResponse.java` → Data model for weather details
+- `Utils.java` → Helper methods (optional)
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+The project follows:
+- Separation of Concerns
+- Clean Code principles
+- Reusable method design
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
+## 🔑 API Used
 
-**Edit a file directly in GitHub**
+- OpenWeatherMap API  
+  https://openweathermap.org/api
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The API returns JSON responses that are parsed into Java objects.
 
-**Use GitHub Codespaces**
+---
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## ⚙️ Installation & Setup
 
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+### 1️⃣ Clone Repository
